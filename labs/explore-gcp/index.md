@@ -1,4 +1,4 @@
-# Getting Starting with Cloud Networking
+# Getting Started with Cloud Networking
 
 
 # Overview 
