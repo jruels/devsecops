@@ -172,7 +172,7 @@ ping -c 3 <Enter mynet-eu-vm’s external IP here>
 ## Remove the allow-internal firewall rules
 Remove the **allow-internal** firewall rule and try to ping the internal IP address of **mynet-eu-vm**.
 1. On the **Navigation menu** (![](index/tkgw1TDgj4Q+YKQUW4jUFd0O5OEKlUMBRYbhlCrF0WY=%2015.png)), click **VPC network** > **Firewall**.
-2. Select the **mynetwork-allow-internal** rule
+2. Select the **mynetwork-allow-custom** rule
 3. Click **Delete**.
 4. Click **Delete** to confirm the deletion. Wait for the firewall rule to be deleted.
 5. Return to the **mynet-us-vm** SSH terminal.
