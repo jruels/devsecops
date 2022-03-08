@@ -32,6 +32,11 @@ Step 1:
 Step 2:
 ![](index/gcp-select-project-step2.png)
 
+Change the output to a more readable format
+```bash
+sudo gcloud config set accessibility/screen_reader false --installation
+```
+
 # Task 1: Use the Cloud Console to create a bucket
 
 In this task, you create a bucket. However, the text also helps you become familiar with how actions are presented in the lab instructions in this class and teaches you about the Cloud Console interface.
