@@ -1,5 +1,4 @@
-# GCP Console
-## Spin up a Kubernetes cluster
+# Spin up a Kubernetes cluster
 In this section, you will be using Cloud Shell to create a Kubernetes cluster.
 1. Click the shell icon on the top right of the browser.
 2. In the new console set the project (replacing with actual project id)
