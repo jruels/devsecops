@@ -32,10 +32,6 @@ Step 1:
 Step 2:
 ![](index/gcp-select-project-step2.png)
 
-Change the output to a more readable format
-```bash
-sudo gcloud config set accessibility/screen_reader false --installation
-```
 
 # Task 1: Use the Cloud Console to create a bucket
 
@@ -86,6 +82,11 @@ Cloud shell provides the following:
 ## Open Cloud Shell and explore features
 
 In the Google Cloud menu, click **Activate Cloud Shell** (![Activate Cloud Shell](https://cdn.qwiklabs.com/ep8HmqYGdD%2FkUncAAYpV47OYoHwC8%2Bg0WK%2F8sidHquE%3D)). If prompted, click **Continue**. Cloud Shell opens at the bottom of the Cloud Console window.
+
+Change the output to a more readable format
+```bash
+sudo gcloud config set accessibility/screen_reader false --installation
+```
 
 There are three buttons on the far right of the Cloud Shell toolbar:
 
