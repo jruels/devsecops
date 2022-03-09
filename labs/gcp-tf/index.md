@@ -662,18 +662,18 @@ ping -c 3 <Enter privatenet-us-vm's internal IP here>
 
 
 
-# Task 4. Create mynetwork and its resources
+# Task 4. Create newnetwork and its resources
 
-Create the auto-mode network **mynetwork** along with its firewall rule and two VM instances (**mynet-us-vm** and **mynet-eu-vm**).
+Create the auto-mode network **newnetwork** along with its firewall rule and two VM instances (**mynet-us-vm** and **mynet-eu-vm**).
 
 
 
-## Configure mynetwork
+## Configure newnetwork
 
-* Create a new configuration and define **mynetwork**.
+* Create a new configuration and define **newnetwork**.
 
   1. To create a new file, click **File** > **New File**.
-  2. Name the new file **mynetwork.tf**, and then open it.
+  2. Name the new file **newnetwork.tf**, and then open it.
 
   You should have the following folder structure in Cloud Shell:
 
@@ -681,19 +681,19 @@ Create the auto-mode network **mynetwork** along with its firewall rule and two 
 
   
 
-* Copy the following code into mynetwork.tf:
+* Copy the following code into newnetwork.tf:
 
 ```
-# Create the mynetwork network
-resource "google_compute_network" "mynetwork" {
-name                    = "mynetwork"
+# Create the newnetwork network
+resource "google_compute_network" "newnetwork" {
+name                    = "newnetwork"
 #RESOURCE properties go here
 }
 ```
 
 
 
-* Add the following property to mynetwork.tf:
+* Add the following property to newnetwork.tf:
 
 ```
 auto_create_subnetworks = "true"
@@ -703,33 +703,33 @@ auto_create_subnetworks = "true"
 
 By definition, an auto-mode network automatically creates a subnetwork in each region. Therefore, you are setting **auto_create_subnetworks** to **true**.
 
-* Verify that mynetwork.tf looks like this:
+* Verify that newnetwork.tf looks like this:
 
 ```
-# Create the mynetwork network
-resource "google_compute_network" "mynetwork" {
-name                    = "mynetwork"
+# Create the newnetwork network
+resource "google_compute_network" "newnetwork" {
+name                    = "newnetwork"
 auto_create_subnetworks = true
 }
 ```
 
 
 
-* To save mynetwork.tf, click **File** > **Save**.
+* To save newnetwork.tf, click **File** > **Save**.
 
 
 
 ## Configure the firewall rule
 
-Define a firewall rule to allow HTTP, SSH, and RDP traffic on mynetwork.
+Define a firewall rule to allow HTTP, SSH, and RDP traffic on newnetwork.
 
-* Add the firewall resource to mynetwork.tf:
+* Add the firewall resource to newnetwork.tf:
 
 ```
-# Create a firewall rule to allow HTTP, SSH, RDP and ICMP traffic on mynetwork
-resource "google_compute_firewall" "mynetwork_allow_http_ssh_rdp_icmp" {
-name    = "mynetwork-allow-http-ssh-rdp-icmp"
-network = google_compute_network.mynetwork.self_link
+# Create a firewall rule to allow HTTP, SSH, RDP and ICMP traffic on newnetwork
+resource "google_compute_firewall" "newnetwork_allow_http_ssh_rdp_icmp" {
+name    = "newnetwork-allow-http-ssh-rdp-icmp"
+network = google_compute_network.newnetwork.self_link
 allow {
     protocol = "tcp"
     ports    = ["22", "80", "3389"]
@@ -743,15 +743,15 @@ allow {
 
 
 
-* To save mynetwork.tf, click **File** > **Save**.
+* To save newnetwork.tf, click **File** > **Save**.
 
 
 
 ## Configure the VM instance
 
-Use the instance module to configure **mynetwork-us-vm** and **mynetwork-eu-vm**.
+Use the instance module to configure **newnetwork-us-vm** and **newnetwork-eu-vm**.
 
-* Add the following VM instances to mynetwork.tf:
+* Add the following VM instances to newnetwork.tf:
 
 ```
 # Create the mynet-us-vm instance
@@ -759,24 +759,24 @@ module "mynet-us-vm" {
   source           = "./instance"
   instance_name    = "mynet-us-vm"
   instance_zone    = "us-central1-a"
-  instance_subnetwork = google_compute_network.mynetwork.self_link
+  instance_subnetwork = google_compute_network.newnetwork.self_link
 }
 # Create the mynet-eu-vm" instance
 module "mynet-eu-vm" {
   source           = "./instance"
   instance_name    = "mynet-eu-vm"
   instance_zone    = "europe-west1-d"
-  instance_subnetwork = google_compute_network.mynetwork.self_link
+  instance_subnetwork = google_compute_network.newnetwork.self_link
 }
 ```
 
-* To save mynetwork.tf, click **File** > **Save**.
+* To save newnetwork.tf, click **File** > **Save**.
 
 
 
-## Create mynetwork and its resources
+## Create newnetwork and its resources
 
-It's time to apply the mynetwork configuration.
+It's time to apply the newnetwork configuration.
 
 * Rewrite the Terraform configurations files to a canonical format and style by running the following command:
 
@@ -831,8 +831,8 @@ Terraform determined that the following 4 resources need to be added:
 
 | Name                              | Description                                    |
 | :-------------------------------- | :--------------------------------------------- |
-| mynetwork                         | VPC network                                    |
-| mynetwork-allow-http-ssh-rdp-icmp | Firewall rule to allow HTTP, SSH, RDP and ICMP |
+| newnetwork                         | VPC network                                    |
+| newnetwork-allow-http-ssh-rdp-icmp | Firewall rule to allow HTTP, SSH, RDP and ICMP |
 | mynet-us-vm                       | VM instance in us-central1-a                   |
 | mynet-eu-vm                       | VM instance in europe-west1-d                  |
 
@@ -865,14 +865,14 @@ Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 
 
-## Verify mynetwork and its resources
+## Verify newnetwork and its resources
 
 In the Cloud Console, verify that the resources were created.
 
 * In the Cloud Console, on the **Navigation menu** (![Navigation menu](https://cdn.qwiklabs.com/tkgw1TDgj4Q%2BYKQUW4jUFd0O5OEKlUMBRYbhlCrF0WY%3D)), click **VPC network** > **VPC networks**.
-* View the **mynetwork** VPC network with its subnetworks.
+* View the **newnetwork** VPC network with its subnetworks.
 * On the **Navigation menu**, click **VPC network** > **Firewall**.
-* View the **mynetwork-allow-http-ssh-rdp-icmp** firewall rule for the VPC network that was created.
+* View the **newnetwork-allow-http-ssh-rdp-icmp** firewall rule for the VPC network that was created.
 * On the **Navigation menu**, click **Compute Engine** > **VM instances**.
 * View the **mynet-us-vm** and **mynet-eu-vm** instances.
 * Note the internal IP addresses for **mynet-eu-vm**.
