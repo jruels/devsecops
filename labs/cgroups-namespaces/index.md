@@ -36,9 +36,11 @@ Run any container, for example:
 docker run --detach alpine sleep 300
 ```
 
-Copy the container id for your running container, this is $CID below
+Copy the container id for your running container, and export it as `$CID` 
 
-If you don't already have the CID, you can find it with `docker ps`
+```bash
+export CID=<container ID from above>
+```
 
 ### docker exec
 Use the `docker exec` utility to explore the inside of the container:
@@ -98,9 +100,9 @@ memhog 10485760 1
 ```
 
 You should see this:
-> allocating 10485760 bytes...
-> writing 10485760 bytes...
-> Killed
+> allocating 10485760 bytes...   
+> writing 10485760 bytes...    
+> Killed   
 
 What is the exit code? What does this exit code signify?
 ```bash
@@ -178,17 +180,4 @@ This verifies that your namespaced process is in the cgroup "mycgroup", but your
 
 How can the namespaced shell above figure what cgroup it is in? (hint: despite the cgroup namespace with relative path, there is still at least one way)
 
-## Docker and CPU limits
-
-### How performant are these cpu bound processes?
-
-Try opening 2 shells and starting these commands at the same time. Does one finish notably faster?
-
-```bash
-docker run --cpu-shares=2 alpine time dd if=/dev/urandom of=/dev/null bs=1M count=2000
-```
-
-```bash
-docker run --cpu-shares=1024 alpine time dd if=/dev/urandom of=/dev/null bs=1M count=2000
-```
-
+# Congrats
