@@ -8,6 +8,26 @@ In this lab we will configure a Kubernetes Pod hosting a mysql database from the
 3. Run a command to exec a shell into a Kubernetes hosted container
 4. Run a command to exec directly into the mysql-client from the command-line
 
+### Clone the repository 
+Create a working directory
+```bash
+mkdir -p $HOME/$(date +%Y%m%d)/
+```
+Enter the directory 
+```bash
+cd $_
+```
+
+Clone the repository 
+```bash
+git clone https://github.com/jruels/devsecops
+```
+
+Enter the lab directory 
+```bash
+cd devsecops/labs/pods/
+```
+
 ### Deploy a Pod from the command-line 
 1. Show the nodes of the cluster 
 ```
